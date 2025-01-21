@@ -17,3 +17,31 @@ window.onscroll = function() {
   }
   prevScrollpos = currentScrollpos;
 }
+
+
+const blob = document.querySelector('.blob');
+
+document.addEventListener('mousemove', (event) => {
+    // Update blob position
+    blob.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+});
+
+
+let mouseX = 0, mouseY = 0;
+let blobX = 0, blobY = 0;
+
+const updateBlobPosition = () => {
+    blobX += (mouseX - blobX) * 0.1; // Adjust 0.1 to change lag intensity
+    blobY += (mouseY - blobY) * 0.1;
+
+    blob.style.transform = `translate(${blobX}px, ${blobY}px)`;
+
+    requestAnimationFrame(updateBlobPosition);
+};
+
+document.addEventListener('mousemove', (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+});
+
+updateBlobPosition();

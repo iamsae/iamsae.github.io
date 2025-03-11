@@ -5,15 +5,15 @@ function setAnimationSpeed(speed) {
   navHolder.style.setProperty('--animation-speed', speed);
 }
 
-// Example usage: setAnimationSpeed('1s'); to set the animation speed to 1 second
-setAnimationSpeed('0.5s'); // Set your desired speed here
+
+setAnimationSpeed('0.5s');
 
 window.onscroll = function() {
   let currentScrollpos = window.pageYOffset;
   if (prevScrollpos > currentScrollpos) {
     navHolder.style.top = "0";
   } else {
-    navHolder.style.top = "-100px"; // Adjust this value based on your navbar height
+    navHolder.style.top = "-100px";
   }
   prevScrollpos = currentScrollpos;
 }
@@ -21,27 +21,38 @@ window.onscroll = function() {
 
 const blob = document.querySelector('.blob');
 
-document.addEventListener('mousemove', (event) => {
+
     // Update blob position
-    blob.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
-});
+    document.addEventListener('mousemove', (event) => {
+      const tracker = document.querySelector('.blob');
+      const trackerSize = tracker.offsetWidth; // Assuming a square element
+      const x = event.pageX - trackerSize / 2; // Center horizontally
+      const y = event.pageY - trackerSize / 2; // Center vertically
+    
+      // Update position
+      tracker.style.left = `${x}px`;
+      tracker.style.top = `${y}px`;
+    });
 
+ 
+    if (window.innerWidth <= 768) {
+      document.body.innerHTML = '<div style="text-align: center; font-size: 24px; margin-top: 20%;">Please use a bigger display to preview this website</div>';
+      document.body.style.backgroundColor = "#f0f0f0"; // Optional: background color
+  }
+  
 
-let mouseX = 0, mouseY = 0;
-let blobX = 0, blobY = 0;
+// const updateBlobPosition = () => {
+//     blobX += (mouseX - blobX) * 0.1; // Adjust 0.1 to change lag intensity
+//     blobY += (mouseY - blobY) * 0.1;
 
-const updateBlobPosition = () => {
-    blobX += (mouseX - blobX) * 0.1; // Adjust 0.1 to change lag intensity
-    blobY += (mouseY - blobY) * 0.1;
+//     blob.style.transform = `translate(${blobX}px, ${blobY}px)`;
 
-    blob.style.transform = `translate(${blobX}px, ${blobY}px)`;
+//     requestAnimationFrame(updateBlobPosition);
+// };
 
-    requestAnimationFrame(updateBlobPosition);
-};
+// document.addEventListener('mousemove', (event) => {
+//     mouseX = event.clientX;
+//     mouseY = event.clientY;
+// });
 
-document.addEventListener('mousemove', (event) => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-});
-
-updateBlobPosition();
+// updateBlobPosition();

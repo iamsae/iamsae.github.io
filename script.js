@@ -47,76 +47,74 @@ const blob = document.querySelector('.blob');
 
 
 // background blobs
+if (window.innerWidth <= 768) {
+  document.body.innerHTML = `
+    <div id="message" style="text-align: center; font-size: 30px; color: #fff; font-weight: bold; 
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: fadeIn 2s ease-out;">
+      Please view this on a larger screen for the best experience.
+    </div>
+  `;
 
-    if (window.innerWidth <= 768) {
-      document.body.innerHTML = `
-          <div id="message" style="text-align: center; font-size: 30px; color: #fff; font-weight: bold; 
-              position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: fadeIn 2s ease-out;">
-              Please use a bigger display to preview this website
-          </div>
-      `;
-  
-      // Apply black background and disable scrolling
-      document.body.style.margin = '0';
-      document.body.style.height = '100vh';
-      document.body.style.backgroundColor = 'black'; // Set black background
-      document.body.style.position = 'relative';
-      document.body.style.overflow = 'hidden'; // Disable scrolling on body
-      document.documentElement.style.overflow = 'hidden'; // Disable scrolling on the whole document
-  
-      const style = document.createElement('style');
-      style.innerHTML = `
-          @keyframes fadeIn {
-              from { opacity: 0; }
-              to { opacity: 1; }
-          }
-          @keyframes fadeOut {
-              from { opacity: 1; }
-              to { opacity: 0; }
-          }
-          @keyframes moveBlob {
-              0% { transform: translate(0, 0); }
-              100% { transform: translate(500px, 500px); }
-          }
-  
-          .blob {
-              position: absolute;
-              background: rgba(28, 60, 98, 0.3); /* Nordic-inspired blue */
-              border-radius: 50%;
-              filter: blur(100px);
-              animation: moveBlob 30s ease-in-out infinite, fadeIn 6s ease-in forwards, fadeOut 6s ease-out forwards;
-          }
-      `;
-      document.head.appendChild(style);
-  
-      // Function to generate random positions and sizes
-      function createBlob() {
-          const blob = document.createElement('div');
-          blob.className = 'blob';
-          const size = Math.random() * 300 + 200;  // Random size between 200px and 500px
-          const left = Math.random() * 100 + '%';  // Random horizontal position
-          const top = Math.random() * 100 + '%';   // Random vertical position
-  
-          blob.style.width = `${size}px`;
-          blob.style.height = `${size}px`;
-          blob.style.left = left;
-          blob.style.top = top;
-  
-          // Add random colors for the blobs
-          const colors = [
-              'rgba(3, 64, 98, 0.3)', 'rgba(23, 78, 97, 0.3)', 'rgba(169, 218, 220, 0.3)'
-          ];
-          blob.style.background = colors[Math.floor(Math.random() * colors.length)];
-  
-          document.body.appendChild(blob);
-  
-          // Remove the blob after its animation
-          setTimeout(() => {
-              blob.remove();
-          }, 30000);  // After 30 seconds (duration of the animation)
-      }
-  
-      // Generate multiple blobs at random intervals
-      setInterval(createBlob, 2000);  // Create a new blob every 2 seconds
+  // Create the "Under Development" message
+  const devMessage = document.createElement('div');
+  devMessage.id = 'devMessage';
+  devMessage.textContent = 'Website Is Currently Under Development';
+  devMessage.style.position = 'absolute';
+  devMessage.style.top = '10px';
+  devMessage.style.left = '50%';
+  devMessage.style.transform = 'translateX(-50%)';
+  devMessage.style.fontSize = '20px';
+  devMessage.style.fontWeight = 'bold';
+  devMessage.style.color = '#FF6347'; // Highlighted color (tomato)
+  devMessage.style.zIndex = '9999'; // Make sure it stays on top
+  document.body.appendChild(devMessage);
+
+  document.body.style.margin = '0';
+  document.body.style.height = '100vh';
+  document.body.style.backgroundColor = 'black';
+  document.body.style.position = 'relative';
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .blob {
+      position: absolute;
+      background: rgba(28, 60, 98, 0.3);
+      border-radius: 50%;
+      filter: blur(100px);
+      transition: transform 0.2s ease-out;
+    }
+  `;
+  document.head.appendChild(style);
+
+  function createBlob() {
+    const blob = document.createElement('div');
+    blob.className = 'blob';
+    const size = Math.random() * 300 + 200;
+    const left = Math.random() * 100 + '%';
+    const top = Math.random() * 100 + '%';
+
+    blob.style.width = `${size}px`;
+    blob.style.height = `${size}px`;
+    blob.style.left = left;
+    blob.style.top = top;
+
+    const colors = [
+      'rgba(3, 64, 98, 0.3)', 'rgba(23, 78, 97, 0.3)', 'rgba(169, 218, 220, 0.3)'
+    ];
+    blob.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+    document.body.appendChild(blob);
+
+    setTimeout(() => {
+      blob.remove();
+    }, 4000);
   }
-  
+
+  setInterval(createBlob, 2500);
+}

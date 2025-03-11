@@ -7,10 +7,12 @@
     background-color: var(--color3);
     color: var(--color1);
     transition: var(--transitions);
-    z-index: -1;
     cursor: pointer;
 }
-
+#btn-1 {
+    position: relative;
+    z-index: 3;
+}
 
 .btn-1:hover {
     background-color: var(--color4);

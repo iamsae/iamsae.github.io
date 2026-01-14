@@ -21,18 +21,38 @@ window.onscroll = function() {
 
 const blob = document.querySelector('.blob');
 
+const tracker = document.querySelector('.blob');
+const trackerSize = tracker.offsetWidth;
 
-    // Update blob position
-    document.addEventListener('mousemove', (event) => {
-      const tracker = document.querySelector('.blob');
-      const trackerSize = tracker.offsetWidth; // Assuming a square element
-      const x = event.pageX - trackerSize / 2; // Center horizontally
-      const y = event.pageY - trackerSize / 2; // Center vertically
-    
-      // Update position
-      tracker.style.left = `${x}px`;
-      tracker.style.top = `${y}px`;
-    });
+let targetX = 0;
+let targetY = 0;
+let currentX = 0;
+let currentY = 0;
+
+// Listen for mouse movement and update target position
+document.addEventListener('mousemove', (event) => {
+  targetX = event.pageX - trackerSize / 2;
+  targetY = event.pageY - trackerSize / 2;
+});
+
+// Animation loop with interpolation
+function animate() {
+  // Lerp factor controls delay (0.1 = slow, 0.3 = faster)
+  const speed = 0.1;
+  currentX += (targetX - currentX) * speed;
+  currentY += (targetY - currentY) * speed;
+
+  tracker.style.left = `${currentX}px`;
+  tracker.style.top = `${currentY}px`;
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+
+
+
 
  
   

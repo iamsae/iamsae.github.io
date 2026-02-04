@@ -1,160 +1,162 @@
-let prevScrollpos = window.pageYOffset;
+// =======================
+// NAVBAR SCROLL BEHAVIOR
+// =======================
 const navHolder = document.getElementById('navHolder');
+let prevScrollPos = window.pageYOffset;
 
 function setAnimationSpeed(speed) {
   navHolder.style.setProperty('--animation-speed', speed);
 }
-
-
 setAnimationSpeed('0.5s');
 
-window.onscroll = function() {
-  let currentScrollpos = window.pageYOffset;
-  if (prevScrollpos > currentScrollpos) {
-    navHolder.style.top = "0";
-  } else {
-    navHolder.style.top = "-100px";
-  }
-  prevScrollpos = currentScrollpos;
-}
-
-
-// const blob = document.querySelector('.blob');
-
-const tracker = document.querySelector('.blob');
-const trackerSize = tracker.offsetWidth;
-
-let targetX = 0;
-let targetY = 0;
-let currentX = 0;
-let currentY = 0;
-
-// Listen for mouse movement and update target position
-document.addEventListener('mousemove', (event) => {
-  targetX = event.pageX - trackerSize / 2;
-  targetY = event.pageY - trackerSize / 2;
+window.addEventListener('scroll', () => {
+  const currentScrollPos = window.pageYOffset;
+  navHolder.style.top = prevScrollPos > currentScrollPos ? "0" : "-100px";
+  prevScrollPos = currentScrollPos;
 });
 
-// Animation loop with interpolation
-function animate() {
-  // Lerp factor controls delay (0.1 = slow, 0.3 = faster)
-  const speed = 0.03;
-  currentX += (targetX - currentX) * speed;
-  currentY += (targetY - currentY) * speed;
-
-  tracker.style.left = `${currentX}px`;
-  tracker.style.top = `${currentY}px`;
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-
-
-// triangle animation 
-const triangle = document.querySelector('.triangle');
-
-let targetRotation = 0;
-let currentRotation = 0;
-
+// =======================
+// HELPER: LINEAR INTERPOLATION
+// =======================
 function lerp(start, end, factor) {
   return start + (end - start) * factor;
 }
 
-function updateRotation() {
-  currentRotation = lerp(currentRotation, targetRotation, 0.01); // 0.1 = smooth easing
-  triangle.style.transform = `rotate(${currentRotation}deg)`;
-  requestAnimationFrame(updateRotation);
+// =======================
+// BLOB TRACKER + WIGGLE
+// =======================
+const blob = document.querySelector('.blob');
+const blobSize = blob.offsetWidth;
+
+let blobTargetX = 0, blobTargetY = 0;
+let blobCurrentX = 0, blobCurrentY = 0;
+
+// Wiggle settings
+const wiggleFrequency = 0.2; // wiggles per second
+const wiggleAmplitude = 10; // max offset in px
+
+document.addEventListener('mousemove', (event) => {
+  blobTargetX = event.pageX - blobSize / 2;
+  blobTargetY = event.pageY - blobSize / 2;
+});
+
+function animateBlob() {
+  const speed = 0.03;
+  blobCurrentX += (blobTargetX - blobCurrentX) * speed;
+  blobCurrentY += (blobTargetY - blobCurrentY) * speed;
+
+  // Wiggle offset based on time
+  const time = Date.now() / 1000;
+  const wiggleX = Math.sin(time * wiggleFrequency * Math.PI * 2) * wiggleAmplitude;
+  const wiggleY = Math.cos(time * wiggleFrequency * Math.PI * 2) * wiggleAmplitude;
+
+  blob.style.left = `${blobCurrentX + wiggleX}px`;
+  blob.style.top = `${blobCurrentY + wiggleY}px`;
+
+  requestAnimationFrame(animateBlob);
+}
+animateBlob();
+
+// =======================
+// TRIANGLE SCROLL ROTATION
+// =======================
+const triangle = document.querySelector('.triangle');
+let triangleTargetRotation = 0;
+let triangleCurrentRotation = 0;
+
+function animateTriangle() {
+  triangleCurrentRotation = lerp(triangleCurrentRotation, triangleTargetRotation, 0.01);
+  triangle.style.transform = `rotate(${triangleCurrentRotation}deg)`;
+  requestAnimationFrame(animateTriangle);
 }
 
 window.addEventListener('scroll', () => {
-  targetRotation = window.scrollY * 0.2; // tweak multiplier for vibe
+  triangleTargetRotation = window.scrollY * 0.2;
+});
+animateTriangle();
+
+// =======================
+// CUSTOM CURSOR + COLLISION
+// =======================
+const cursor = document.querySelector('.cursor');
+let cursorMouseX = 0, cursorMouseY = 0;
+let cursorCurrentX = 0, cursorCurrentY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  cursorMouseX = e.clientX;
+  cursorMouseY = e.clientY;
 });
 
-updateRotation();
+function animateCursor() {
+  cursorCurrentX = lerp(cursorCurrentX, cursorMouseX, 0.2);
+  cursorCurrentY = lerp(cursorCurrentY, cursorMouseY, 0.2);
 
+  cursor.style.transform = `translate(${cursorCurrentX}px, ${cursorCurrentY}px)`;
 
- 
-  
+  // Collision detection with blob
+  const cursorRect = cursor.getBoundingClientRect();
+  const blobRect = blob.getBoundingClientRect();
 
-  
+  const isTouching = !(
+    cursorRect.right < blobRect.left ||
+    cursorRect.left > blobRect.right ||
+    cursorRect.bottom < blobRect.top ||
+    cursorRect.top > blobRect.bottom
+  );
 
-
-
-
-
-
-
-
-// background blobs
-if (window.innerWidth <= 768) {
-  document.body.innerHTML = `
-    <div id="message" style="text-align: center; font-size: 30px; color: #fff; font-weight: bold; 
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: fadeIn 2s ease-out;">
-      Please view this on a larger screen for the best experience.
-    </div>
-  `;
-
-  // Create the "Under Development" message
-  const devMessage = document.createElement('div');
-  devMessage.id = 'devMessage';
-  devMessage.textContent = 'Website Is Currently Under Development';
-  devMessage.style.position = 'absolute';
-  devMessage.style.top = '10px';
-  devMessage.style.left = '50%';
-  devMessage.style.transform = 'translateX(-50%)';
-  devMessage.style.fontSize = '20px';
-  devMessage.style.fontWeight = 'bold';
-  devMessage.style.color = '#FF6347'; // Highlighted color (tomato)
-  devMessage.style.zIndex = '9999'; // Make sure it stays on top
-  document.body.appendChild(devMessage);
-
-  document.body.style.margin = '0';
-  document.body.style.height = '100vh';
-  document.body.style.backgroundColor = 'black';
-  document.body.style.position = 'relative';
-  document.body.style.overflow = 'hidden';
-  document.documentElement.style.overflow = 'hidden';
-
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .blob {
-      position: absolute;
-      background: rgba(28, 60, 98, 0.3);
-      border-radius: 50%;
-      filter: blur(100px);
-      transition: transform 0.2s ease-out;
-    }
-  `;
-  document.head.appendChild(style);
-
-  function createBlob() {
-    const blob = document.createElement('div');
-    blob.className = 'blob';
-    const size = Math.random() * 300 + 200;
-    const left = Math.random() * 100 + '%';
-    const top = Math.random() * 100 + '%';
-
-    blob.style.width = `${size}px`;
-    blob.style.height = `${size}px`;
-    blob.style.left = left;
-    blob.style.top = top;
-
-    const colors = [
-      'rgba(3, 64, 98, 0.3)', 'rgba(23, 78, 97, 0.3)', 'rgba(169, 218, 220, 0.3)'
-    ];
-    blob.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-    document.body.appendChild(blob);
-
-    setTimeout(() => {
-      blob.remove();
-    }, 4000);
+  if (isTouching) {
+    cursor.style.background = "#2E3440"; // Dark Nord
+    cursor.style.border = "2px solid #3B4252";
+  } else {
+    cursor.style.background = "#ECEFF4"; // Light Nord
+    cursor.style.border = "2px solid #D8DEE9";
   }
 
-  setInterval(createBlob, 2500);
+  requestAnimationFrame(animateCursor);
 }
+animateCursor();
+
+
+
+// =======================
+// WAVE ANIMATION (faster + wavier)
+// =======================
+
+const waves = document.querySelectorAll('.wave1 path');
+
+// Settings per wave
+// w-5 (last path, brightest) stays solid
+const waveSettings = [
+  { speed: 1.2, amplitudeX: 40, amplitudeY: 12, animateOpacity: true },  // w-1
+  { speed: 1.5, amplitudeX: 45, amplitudeY: 15, animateOpacity: true },  // w-2
+  { speed: 1.8, amplitudeX: 50, amplitudeY: 18, animateOpacity: true },  // w-3
+  { speed: 2.0, amplitudeX: 55, amplitudeY: 20, animateOpacity: true },  // w-4
+  { speed: 1.0, amplitudeX: 25, amplitudeY: 8, animateOpacity: false }   // w-5 (brightest, stays solid)
+];
+
+function animateWaves() {
+  const time = Date.now() / 1000;
+
+  waves.forEach((wave, i) => {
+    const { speed, amplitudeX, amplitudeY, animateOpacity } = waveSettings[i];
+
+    // Faster oscillation
+    const offsetX = Math.sin(time * speed) * amplitudeX;
+    const offsetY = Math.cos(time * speed * 0.9) * amplitudeY;
+
+    wave.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    wave.style.transformOrigin = "center";
+    wave.style.transformBox = "fill-box";
+
+    if (animateOpacity) {
+      const opacity = 0.6 + (Math.sin(time * speed * 1.2) + 1) / 2 * 0.4; // range 0.6–1
+      wave.style.opacity = opacity;
+    } else {
+      wave.style.opacity = 1; // keep solid for w-5
+    }
+  });
+
+  requestAnimationFrame(animateWaves);
+}
+
+animateWaves();

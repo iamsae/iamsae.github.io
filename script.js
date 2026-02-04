@@ -19,7 +19,7 @@ window.onscroll = function() {
 }
 
 
-const blob = document.querySelector('.blob');
+// const blob = document.querySelector('.blob');
 
 const tracker = document.querySelector('.blob');
 const trackerSize = tracker.offsetWidth;
@@ -38,7 +38,7 @@ document.addEventListener('mousemove', (event) => {
 // Animation loop with interpolation
 function animate() {
   // Lerp factor controls delay (0.1 = slow, 0.3 = faster)
-  const speed = 0.1;
+  const speed = 0.03;
   currentX += (targetX - currentX) * speed;
   currentY += (targetY - currentY) * speed;
 
@@ -51,7 +51,27 @@ function animate() {
 animate();
 
 
+// triangle animation 
+const triangle = document.querySelector('.triangle');
 
+let targetRotation = 0;
+let currentRotation = 0;
+
+function lerp(start, end, factor) {
+  return start + (end - start) * factor;
+}
+
+function updateRotation() {
+  currentRotation = lerp(currentRotation, targetRotation, 0.01); // 0.1 = smooth easing
+  triangle.style.transform = `rotate(${currentRotation}deg)`;
+  requestAnimationFrame(updateRotation);
+}
+
+window.addEventListener('scroll', () => {
+  targetRotation = window.scrollY * 0.2; // tweak multiplier for vibe
+});
+
+updateRotation();
 
 
  

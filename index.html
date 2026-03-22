@@ -1,162 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saeed</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="buttons.css">
-    <link rel="stylesheet" href="texts.css">
-    <link rel="stylesheet" href="scrollbar.css">
-    <link rel="stylesheet" href="nav-bar.css">
-    <link rel="shortcut icon" type="image/x-icon" href="logo.png">
+    <title>M. Saeed — Digital Designer</title>
+    <meta name="description" content="M. Saeed - Digital Designer & Developer creating beautiful, functional digital experiences with clean design and smooth interactions.">
+    <meta name="keywords" content="digital designer, web developer, UI/UX design, branding, creative direction, portfolio">
+    <meta name="author" content="M. Saeed">
+    <meta property="og:title" content="M. Saeed — Digital Designer">
+    <meta property="og:description" content="Digital Designer & Developer creating beautiful, functional digital experiences.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iamsae.github.io">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="M. Saeed — Digital Designer">
+    <meta name="twitter:description" content="Digital Designer & Developer creating beautiful, functional digital experiences.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
 </head>
-
 <body>
-    <div class="cursor"></div>
-       <div class="nav-holder" id="navHolder">
-            <div class="navbar" id="navbar">
-              <img class="logo" src="logo.png" alt="logo.png">
-              <div class="menu">
-                <a href="#home">Home</a>
-                <a href="#services">Projects</a>
-                <a href="#about">Blog</a>
-                <a href="#contact">Contact</a>
-              </div>
+    <!-- Floating Navigation -->
+    <nav class="floating-nav" id="floatingNav">
+        <a href="#about" class="float-nav-link">About</a>
+        <a href="#work" class="float-nav-link">Skills</a>
+        <a href="#contact" class="float-nav-link">Contact</a>
+    </nav>
+
+    <!-- Particle Background -->
+    <canvas id="particleCanvas" class="particle-bg"></canvas>
+
+    <!-- Animated Background Elements -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <main class="scalzo-main">
+        <!-- Hero Section -->
+        <section class="hero-scalzo">
+            <div class="hero-content">
+                <h1 class="hero-title reveal">M. Saeed</h1>
+                <h2 class="hero-subtitle reveal">Digital Designer</h2>
+                <p class="hero-description reveal">
+                    Passionate about design & development, I help companies & brands around the world create unique & memorable digital solutions — I keep things simple by crafting clean & emotional experiences.
+                </p>
+                <a href="#contact" class="hero-cta magnetic reveal">Get in Touch</a>
             </div>
-          </div>   
-    <main>
-        
-        <section class="section-1">
-
-            <h1 >Mohammad Saeed</h1>
-            <h2 >UI / UX / FRONTEND</h2>
-            <a id="btn-1" href="./cv.pdf" download="Mohammad Saeed CV"><button class="btn-1">Download CV</button></a>
-
-
-            <svg class="wave1" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
-                <path class="w-1"
-                    d="M0 856L32 845.7C64 835.3 128 814.7 192 824.8C256 835 320 876 384 895.8C448 915.7 512 914.3 576 894.7C640 875 704 837 768 816.8C832 796.7 896 794.3 960 807.7C1024 821 1088 850 1152 872.3C1216 894.7 1280 910.3 1344 913.7C1408 917 1472 908 1536 887.8C1600 867.7 1664 836.3 1728 826.5C1792 816.7 1856 828.3 1888 834.2L1920 840L1920 1081L1888 1081C1856 1081 1792 1081 1728 1081C1664 1081 1600 1081 1536 1081C1472 1081 1408 1081 1344 1081C1280 1081 1216 1081 1152 1081C1088 1081 1024 1081 960 1081C896 1081 832 1081 768 1081C704 1081 640 1081 576 1081C512 1081 448 1081 384 1081C320 1081 256 1081 192 1081C128 1081 64 1081 32 1081L0 1081Z"
-                    fill="#2f3541"></path>
-                <path class="w-2"
-                    d="M0 925L32 930.5C64 936 128 947 192 939.8C256 932.7 320 907.3 384 893.5C448 879.7 512 877.3 576 870.8C640 864.3 704 853.7 768 865.7C832 877.7 896 912.3 960 919.7C1024 927 1088 907 1152 907.7C1216 908.3 1280 929.7 1344 930.3C1408 931 1472 911 1536 893.5C1600 876 1664 861 1728 858C1792 855 1856 864 1888 868.5L1920 873L1920 1081L1888 1081C1856 1081 1792 1081 1728 1081C1664 1081 1600 1081 1536 1081C1472 1081 1408 1081 1344 1081C1280 1081 1216 1081 1152 1081C1088 1081 1024 1081 960 1081C896 1081 832 1081 768 1081C704 1081 640 1081 576 1081C512 1081 448 1081 384 1081C320 1081 256 1081 192 1081C128 1081 64 1081 32 1081L0 1081Z"
-                    fill="#555b67"></path>
-                <path class="w-3"
-                    d="M0 942L32 938C64 934 128 926 192 922.3C256 918.7 320 919.3 384 917C448 914.7 512 909.3 576 915.2C640 921 704 938 768 942.2C832 946.3 896 937.7 960 934.2C1024 930.7 1088 932.3 1152 937.8C1216 943.3 1280 952.7 1344 961.5C1408 970.3 1472 978.7 1536 967.8C1600 957 1664 927 1728 918.2C1792 909.3 1856 921.7 1888 927.8L1920 934L1920 1081L1888 1081C1856 1081 1792 1081 1728 1081C1664 1081 1600 1081 1536 1081C1472 1081 1408 1081 1344 1081C1280 1081 1216 1081 1152 1081C1088 1081 1024 1081 960 1081C896 1081 832 1081 768 1081C704 1081 640 1081 576 1081C512 1081 448 1081 384 1081C320 1081 256 1081 192 1081C128 1081 64 1081 32 1081L0 1081Z"
-                    fill="#7e8490"></path>
-                <path class="w-4"
-                    d="M0 985L32 978.5C64 972 128 959 192 952.8C256 946.7 320 947.3 384 955.8C448 964.3 512 980.7 576 991.5C640 1002.3 704 1007.7 768 1001C832 994.3 896 975.7 960 965.7C1024 955.7 1088 954.3 1152 959.2C1216 964 1280 975 1344 987.3C1408 999.7 1472 1013.3 1536 1011.8C1600 1010.3 1664 993.7 1728 991.2C1792 988.7 1856 1000.3 1888 1006.2L1920 1012L1920 1081L1888 1081C1856 1081 1792 1081 1728 1081C1664 1081 1600 1081 1536 1081C1472 1081 1408 1081 1344 1081C1280 1081 1216 1081 1152 1081C1088 1081 1024 1081 960 1081C896 1081 832 1081 768 1081C704 1081 640 1081 576 1081C512 1081 448 1081 384 1081C320 1081 256 1081 192 1081C128 1081 64 1081 32 1081L0 1081Z"
-                    fill="#aab0bc"></path>
-                <path class="w-5"
-                    d="M0 1024L32 1025.5C64 1027 128 1030 192 1033.8C256 1037.7 320 1042.3 384 1046C448 1049.7 512 1052.3 576 1051.7C640 1051 704 1047 768 1038.8C832 1030.7 896 1018.3 960 1017.3C1024 1016.3 1088 1026.7 1152 1027.5C1216 1028.3 1280 1019.7 1344 1014C1408 1008.3 1472 1005.7 1536 1010.5C1600 1015.3 1664 1027.7 1728 1032.2C1792 1036.7 1856 1033.3 1888 1031.7L1920 1030L1920 1081L1888 1081C1856 1081 1792 1081 1728 1081C1664 1081 1600 1081 1536 1081C1472 1081 1408 1081 1344 1081C1280 1081 1216 1081 1152 1081C1088 1081 1024 1081 960 1081C896 1081 832 1081 768 1081C704 1081 640 1081 576 1081C512 1081 448 1081 384 1081C320 1081 256 1081 192 1081C128 1081 64 1081 32 1081L0 1081Z"
-                    fill="#d8dee9"></path>
-            </svg>
-            </div>
-            <div class="blob"></div>
         </section>
-         <div id="bg-color">
-            
-            <svg class="triangle" xmlns="http://www.w3.org/2000/svg" width="647.106" height="650.365" viewBox="0 0 647.106 650.365">
-                <path id="Polygon_1" data-name="Polygon 1" d="M200.981,77.973c20.016-34.66,70.044-34.66,90.061,0L446.974,347.983c20.02,34.667-5,78.005-45.03,78.005H90.079c-40.032,0-65.051-43.339-45.03-78.005Z" transform="translate(311.548) rotate(47)" fill="#4c6370"/>
-              </svg>
-       <div id="blur"> 
-        <section class="section-2">
-        <div class="about-me">
-            <h3>about me</h3>
-            <p>I'm a UX/UI & frontend web developer from Afghanistan. I love interactive, animated,<br> responsive
-                web
-                design,
-                graphic design,
-                photography,
-                videography,
-                rhythm games & cycling.</p>
-        </div>
-        <div class="skills">
-            <div class="ui-skills">
-                <h4>UI/UX design</h4>
-                <li>User interface design</li>
-                <li>Interaction design</li>
-                <li>User experience thinking</li>
-                <li>Prototyping</li>
-                <li>Wireframing</li>
-            </div>
-            <div class="frontend-skills">
-                <h4>frontend development</h4>
-                <li>HTML5 / CSS3</li>
-                <li>Responsive design</li>
-                <li>Sass</li>
-            </div>
-            <div class="team-skills">
-                <h4>team building</h4>
-                <li>Smiling</li>
-                <li>Communication</li>
-                <li>Team Working</li>
-                <li>Sharing my idea</li>
-                <li>...etc</li>
-            </div>
-        </div>
-    </section>
-    <section class="section-3">
-        <div class="contact">
-            <h3>get in touch</h3>
-            <a href="mailto:sajjadsaad861@gmail.com"><button class="btn-1" style=".btn-1:hover{
-                 box-shadow: 0px 0px 20px 0 #3B4252;
-            }">sajjadsaad861@gmail.com </button></a>
-            <div class="social-icons">
-                <a href="https://github.com/iamsae" target="_blank">
-                    <div>
-                        <svg class="icons" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                            viewBox="0 0 40 40">
-                            <path
-                                d="M24,4A20,20,0,1,0,44,24,20.023,20.023,0,0,0,24,4Zm0,3a17,17,0,0,1,5,33.252V35.137a4.9,4.9,0,0,0-2.691-4.363,9.667,9.667,0,0,0,6.937-4.766,6.637,6.637,0,0,0-.808-7.287c.444-1.365.939-3.76-.238-5.644A5.584,5.584,0,0,0,27.766,15.6a12.192,12.192,0,0,0-7.535-.006,5.582,5.582,0,0,0-4.43-2.518,5.72,5.72,0,0,0-.068,5.438,6.667,6.667,0,0,0-1.043,7.38,9.617,9.617,0,0,0,6.992,4.886A4.91,4.91,0,0,0,19.1,34.156H17.783a2.78,2.78,0,0,1-2.5-1.416,4.536,4.536,0,0,0-2.33-1.734c-.482-.051-.807.316-.387.641,1.419.966,1.517,2.547,2.086,3.582A3.357,3.357,0,0,0,17.43,37H19v3.252A17,17,0,0,1,24,7Z"
-                                transform="translate(-4 -4)" />
-                        </svg>
-                    </div>
-                </a>
-                <a href="https://discord.gg/6epPjtyzBD">
-                    <div>
-                        <svg class="icons" xmlns="http://www.w3.org/2000/svg" width="47.539" height="35.14"
-                            viewBox="0 0 47.539 35.14">
-                            <path
-                                d="M41.953,7.765C37.839,4.456,31.33,3.9,31.054,3.873a1.031,1.031,0,0,0-1.024.607,8.03,8.03,0,0,0-.313.86A25.341,25.341,0,0,1,38.8,8.6a1.034,1.034,0,0,1-1.091,1.757c-5.2-3.224-11.695-3.386-12.944-3.386s-7.747.162-12.942,3.386A1.034,1.034,0,0,1,10.737,8.6,25.368,25.368,0,0,1,19.826,5.34a9.042,9.042,0,0,0-.313-.86,1.023,1.023,0,0,0-1.026-.605c-.274.022-6.783.581-10.954,3.937C5.354,9.824,1,21.6,1,31.774a1.038,1.038,0,0,0,.136.512c3.006,5.279,11.2,6.662,13.073,6.723h.032a1.033,1.033,0,0,0,.836-.426l1.891-2.6A20.153,20.153,0,0,1,9.116,32.3a1.033,1.033,0,0,1,1.366-1.552c.063.056,4.858,4.125,14.288,4.125,9.447,0,14.242-4.086,14.29-4.127A1.033,1.033,0,0,1,40.425,32.3a20.118,20.118,0,0,1-7.853,3.686l1.891,2.6a1.033,1.033,0,0,0,.836.426h.032c1.869-.058,10.068-1.441,13.073-6.722a1.051,1.051,0,0,0,.134-.51C48.539,21.6,44.185,9.824,41.953,7.765ZM18.052,27.64a3.9,3.9,0,0,1-3.617-4.134,3.9,3.9,0,0,1,3.617-4.134,3.9,3.9,0,0,1,3.617,4.134A3.9,3.9,0,0,1,18.052,27.64Zm13.436,0a3.9,3.9,0,0,1-3.617-4.134,3.9,3.9,0,0,1,3.617-4.134,3.9,3.9,0,0,1,3.617,4.134A3.9,3.9,0,0,1,31.488,27.64Z"
-                                transform="translate(-1 -3.869)" />
-                        </svg>
-                    </div>
-                </a>
-                <a href="https://t.me/vibology39">
-                    <div>
-                        <svg class="icons" xmlns="http://www.w3.org/2000/svg" width="42.313" height="39.02"
-                            viewBox="0 0 42.313 39.02">
-                            <path
-                                d="M40.723,2.986a5.06,5.06,0,0,0-1.665.406c-.455.184-2.091.887-4.695,2S28.308,8,24.631,9.581c-7.356,3.166-15.622,6.728-19.858,8.553a5.03,5.03,0,0,0-1.389.757A3.845,3.845,0,0,0,2,21.724a3.8,3.8,0,0,0,1.054,2.546,4.718,4.718,0,0,0,1.649,1.036v0c1.65.673,6.579,2.692,7.753,3.172.416,1.277,2.2,6.743,2.628,8.117h0a6.493,6.493,0,0,0,1,2.136,2.908,2.908,0,0,0,.744.694,2.429,2.429,0,0,0,.368.182c.018.008.036.01.054.017l-.05-.013c.037.015.07.038.107.051a1.408,1.408,0,0,0,.186.038,2.883,2.883,0,0,0,.847.152,2.935,2.935,0,0,0,1.856-.639l.045-.034,4.968-4.3,6.083,5.761a3.537,3.537,0,0,0,3,1.366,3.839,3.839,0,0,0,2.761-1.248,4.129,4.129,0,0,0,1.157-2.178l0,0c.136-.715,5.959-30.645,5.959-30.645l-.012.051a5.117,5.117,0,0,0,.021-2.445A3.5,3.5,0,0,0,42.69,3.5,3.429,3.429,0,0,0,40.723,2.986Zm-.835,4.742c-.23,1.183-5.447,28.007-5.769,29.689L25.333,29.1l-5.939,5.139,1.645-6.582S32.386,15.9,33.069,15.215c.55-.548.665-.74.665-.931a.389.389,0,0,0-.421-.436,1.933,1.933,0,0,0-.814.381c-2.42,1.544-12.727,7.556-17.8,10.507-.305-.125-4.885-2.007-7.352-3.016l18.92-8.147C29.949,11.991,33.4,10.507,36,9.39,38.2,8.448,39.341,7.959,39.888,7.728Zm-5.831,30h0l0,.013C34.06,37.725,34.055,37.737,34.057,37.726Z"
-                                transform="translate(-2.004 -2.983)" />
-                        </svg>
-                    </div>
-                </a>
-                <a href="">
-                    <div>
-                        <svg class="icons" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                            viewBox="0 0 40 40">
-                            <path
-                                d="M34.25,26a24.787,24.787,0,0,0-4.113.348,78.71,78.71,0,0,1,4.127,14.785A20.034,20.034,0,0,0,43.62,27.847,24.621,24.621,0,0,0,34.25,26Zm-8.227-1.755q-.8-1.821-1.7-3.591A38.806,38.806,0,0,1,11,23a39.044,39.044,0,0,1-6.918-.627C4.039,22.911,4,23.451,4,24A19.918,19.918,0,0,0,9.661,37.911,27.883,27.883,0,0,1,26.023,24.245ZM27.1,19.5c.659,1.315,1.289,2.647,1.876,4a27.662,27.662,0,0,1,14.981,1.25c.009-.254.038-.5.038-.758a19.9,19.9,0,0,0-4.864-13.035A39.158,39.158,0,0,1,27.1,19.5ZM11.985,39.95a19.838,19.838,0,0,0,19.484,2.589,75.809,75.809,0,0,0-4.286-15.505A24.864,24.864,0,0,0,11.985,39.95ZM37.015,8.845A19.866,19.866,0,0,0,17.757,5.011,79.773,79.773,0,0,1,25.72,16.84,36.148,36.148,0,0,0,37.015,8.845ZM4.552,19.41A35.972,35.972,0,0,0,11,20a35.845,35.845,0,0,0,11.909-2.033A76.836,76.836,0,0,0,14.883,6.221,20.053,20.053,0,0,0,4.552,19.41Z"
-                                transform="translate(-4 -4)" />
-                        </svg>
-                    </div>
-                </a>
-            </div>
 
-        </div>
-        <img class="wave-right" src="wave-right.svg">
-        <img class="wave-left" src="wave-left.svg">
-        <!-- <p>Made with<span>🤍</span>by Saeed.</p> -->
-    </section></div></div>
-    
+        <!-- Navigation -->
+        <nav class="nav-scalzo reveal">
+            <a href="#about" class="nav-link">About ►</a>
+            <a href="#work" class="nav-link">Skills ►</a>
+            <a href="#contact" class="nav-link">Contact ►</a>
+        </nav>
+
+        <!-- About Section -->
+        <section id="about" class="section-scalzo">
+            <h2 class="section-title reveal">About ►</h2>
+            <div class="about-content reveal">
+                <p class="about-text">
+                    I'm a digital designer and developer with a passion for creating beautiful, functional experiences. My work spans across UI/UX design, web development, and creative direction.
+                </p>
+                <p class="about-text">
+                    I believe in the power of simplicity and attention to detail. Every project is an opportunity to push boundaries and create something truly memorable.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="work" class="section-scalzo">
+            <h2 class="section-title reveal">Skills ►</h2>
+            <div class="skills-content reveal">
+                <p class="skills-text">
+                    UI/UX Design — Web Development — Branding — Creative Direction — Frontend Development
+                </p>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section class="section-scalzo">
+            <h2 class="section-title reveal">Selected Work ►</h2>
+            <div class="work-scalzo">
+                <div class="work-item reveal">
+                    <h3 class="work-title">
+                        <a href="project-nexus.html">Project Nexus</a>
+                    </h3>
+                    <p class="work-category">Project /01 — Branding — web design — art direction</p>
+                </div>
+                
+                <div class="work-item reveal" style="transition-delay: 100ms;">
+                    <h3 class="work-title">
+                        <a href="project-aura.html">Aura Weather</a>
+                    </h3>
+                    <p class="work-category">Project /02 — web design</p>
+                </div>
+                
+                <div class="work-item reveal" style="transition-delay: 200ms;">
+                    <h3 class="work-title">
+                        <a href="project-botchi.html">Botchi</a>
+                    </h3>
+                    <p class="work-category">Project /03 — Web design — art direction</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-scalzo">
+            <h2 class="section-title reveal">Contact ►</h2>
+            <div class="contact-scalzo reveal">
+                <div class="contact-item">
+                    <h3 class="contact-label">Email</h3>
+                    <a href="mailto:sajjadsaad861@gmail.com" class="contact-value">sajjadsaad861@gmail.com</a>
+                </div>
+                
+                <div class="contact-item" style="transition-delay: 100ms;">
+                    <h3 class="contact-label">Phone</h3>
+                    <a href="tel:+93789012345" class="contact-value">+93 789 012 345</a>
+                </div>
+                
+                <div class="contact-item" style="transition-delay: 200ms;">
+                    <h3 class="contact-label">Location</h3>
+                    <p class="contact-value">Afghanistan</p>
+                </div>
+                
+                <div class="contact-item" style="transition-delay: 300ms;">
+                    <h3 class="contact-label">Connect</h3>
+                    <div class="social-scalzo">
+                        <a href="https://github.com/iamsae" target="_blank" class="social-scalzo-link">GitHub</a>
+                        <span class="social-separator">—</span>
+                        <a href="https://discord.gg/6epPjtyzBD" target="_blank" class="social-scalzo-link">Discord</a>
+                        <span class="social-separator">—</span>
+                        <a href="https://t.me/vibology39" target="_blank" class="social-scalzo-link">Telegram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-    
-    <script src="script.js"></script>
-</body>
 
+    <script src="a17-core.js"></script>
+</body>
 </html>
